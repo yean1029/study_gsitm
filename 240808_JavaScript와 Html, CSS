@@ -1,0 +1,163 @@
+1. HTML, CSS, JS 각 언어의 역할
+1) HTML(Hyper Text Markup Language): 브라우저 상에 보이는 웹의 구조를 담당, ex) 제목, 문단, 표, 이미지, 동영상 등
+2) CSS(Cascading Style Sheets): 실제 화면을 꾸며주는 시각적인 표현(정적)을 담당, ex) 색상, 크기, 폰트, 레이아웃 등
+3) JS(JavaScript): 콘텐츠를 바꾸고 움직이는 등 페이지를 동작시키는 동적 처리를 담당
+
+ 
+2. 실습을 위한 프로그램 설치
+1) Visual Studio Code 설치
+2) Node.js v20.16.0(LTS) version 설치 
+   : Node.js는 VS Code에서 JavaScript 컴파일 하기 위한 용도로 설치
+3) 설치 확인 방법
+· cdm 실행 → node -v 명령어 입력
+· cmd에서 node -v 만 입력해도 출력되는 이유?
+  : 검색창 → path → 환경 변수 → 시스템 변수 → C:\Program Files\nodejs\ 해당 내용이 등록이 되어 있기 때문
+4) 활용도가 높은 확장팩 설치
+· Auto Rename Tag: 태그 수정 시, 짝이 되는 태그 자동으로 변경해주는 확장팩
+· Live Server: 코드 수정 시, 실시간으로 반영해주는 확장팩
+
+
+3. JavaScript 실습을 위한 기본 설정
+· JavaScript 언어를 사용하는 이유? 로그인/회원가입 등 공란 체크, 동적인 요소 제공하기 위함
+· 아래 사진과 같이 JavaScript 폴더 생성 후, 파일명.js 형태로 사용 > VS Code는 하나의 폴더를 하나의 Project로 인식
+· VS Code - console 창 발생 단축키: ctrl+`
+· js 컴파일 방법: node 파일명.js
+ ※ 주석:  /**/ 문단 주석,  ctrl+/ : // 한줄 주석,  ctrl + x : 한줄 삭제
+
+
+4. 변수
+1) 변수란? 특정 값을 임시로 저장하는 용도로 사용
+· 지역 변수: 해당 영역에서만 사용하는 변수
+· 전역 변수(static): 공통 영역에서 사용하는 변수
+2) 변수 선언과 할당
+· 선언: 변수를 선언하는 것
+· 할당: 선언된 변수에 값을 넣는 것
+3) 변수명 규칙
+· 일반적으로 영어와 숫자를 사용하며, 숫자로 시작할 수 없음 
+· Camel Case: 낙타의 등과 같은 모습, 단어 시작마다 첫글자를 대문자로 사용(ex: myNameIsKim), Java에서 많이 사용
+· Snake Case: 뱀과 같은 모습, 전체 소문자를 사용하며 언더바로 연결(ex: my_name_is_kim), DB 데이터 저장 시 사용
+4) 변수의 사용
+· var: 더 이상 사용하지 않음 (권고)
+· let:: 선언 후 재정의 가능
+· const: 상수, 선언 후 지정한 값 변경해서 사용할 수 없음, 재정의 불가 
+· 위와 같은 코드는 오류 발생, const는 한 번 지정한 값은 재정의 할 수 없기 때문에 let으로 선언하면 오류 해결!
+
+
+5. Data Type
+1) Number: 정수, 실수 모두 가능 
+2) String: 문자열, 작은따옴표 혹은 큰따옴표 처리
+· Escape Character: \n : 개행, \t : 탭 기능
+· Template Literal: 백틱(``), 사용 예시: console.log(`${groupName} 안유진`);
+3) Boolean: 논리값(true, false)
+4) undefined: 변수 선언 이후 값이 할당 안된 경우
+5) null: JavaScript에서는 개발자가 명시적으로 없는 값으로 초기화할 때 사용
+6) Symbol: 유일무이한 값을 선언할 때 사용
+7) Object: 객체(Function, Array, Object..), 데이터의 한가지 타입으로 생각
+· 배열 안에 Object 또는 Object 안에 배열 세팅 가능
+ ※ 각 변수의 type을 확인하는 방법: typeof
+
+
+6. 연산자
+1) 산술 연산자 : +, -, *, /
+· console.log(10+10);
+· console.log(10-10);
+· console.log(10*10);
+· console.log(10 / 3);  // 내부적으로 자동으로 데이터타입을 소수점으로 사용
+· console.log(10 % 3);  // 나머지 연산자: %
+· console.log(3 % 7);  // 나눌 수 없을 때는, 몫 출력
+ ※ 숫자가 아닌 곳에 "+, -" 사용했을 때, 아래와 같은 결과가 나오는 이유? 묵시적 형변환으로 인함
+    let sample = '99';
+    console.log(typeof sample);  >> string 출력 
+    console.log(typeof +sample);  >> number 출력
+
+2) 증감 연산자: ++, --
+· number++ / ++number
+· number-- / --number
+
+3) 할당 연산자
+· number += 10;
+· number -= 10;
+· number *= 10;
+· number /= 10;
+· number % 10;
+
+4) 비교 연산자: == 값만 비교, === 값과 타입 비교(더 정확하지만 Java에서는 지원하지 않음)
+· console.log(5 == 5);  >> true 출력
+· console.log(5 == '5');  >> true 출력
+· console.log(5 === '5');  >> false 출력, Number와 String으로 타입이 다르기 때문
+· console.log(0 == '');  >> true 출력
+· console.log(1 == true);  >> true 출력
+· console.log(false == 0);  >> true 출력
+· console.log(true == '1');  >> true 출력
+· console.log(true == 'hello');  >> false 출력
+
+5) 관계 연산자: <, >, >=, <=, !=, !==
+
+6) 삼항 연산자: 간단한 비교, if문 사용해도 무관
+· console.log(10 > 0 ? '참' : '거짓');
+
+7) 논리 연산자: And(&&), Or(||), Not(!)
+· true, false 두 가지 결과 값 반환하며, true=1, false=0 형태로 표현하기도 함
+· AND 연산자: 두 조건이 모두 참일 때만 결과가 참
+· OR 연산자: 두 조건이 모두 거짓일 때만 결과가 거짓
+· XOR 연산자: 두 조건이 서로 다를 때만 결과가 다름,  세 번의 연산을 하면 x, y 두 개의 값 치환 가능(temp와 같은 역할)
+· NOT 연산자: 참과 거짓을 바꾸어 주는 연산
+
+8) 단축평가
+· &&: 왼쪽에서 오른쪽으로 확인하며, 하나라도 false인 경우, false 반환, 모두 true이면 true 반환
+· ||: 왼쪽에서 오른쪽으로 확인하며, 하나라도 true이면 true 반환
+· console.log(true || "hello");  >> true 출력
+· console.log(false || "hello");  >> hello 출력, 최소한 한 개의 값을 보여주어야 하기 때문에 왼쪽이 false이므로 hello 출력
+· console.log(true && "hello");  >> hello 출력
+· console.log(false && "hello"); >> false 출력, 왼쪽부터 false이므로 오른쪽 확인 없이 바로 false 출력
+
+9) 지수 연산자: **
+· console.log(2 ** 2);
+
+10) null 연산자: 좌측 값이 null 혹은 undefied 이면 우측 값 반환
+  let myName;
+  myName = myName ?? 'hello';
+  console.log(myName);  >> hello 출력, ??의 역할은 myName이 Null인지 체크, Null이면 'hello'대입해주는 역할
+
+ 
+7. Html&CSS 실습을 위한 기본 설정
+· 아래 사진과 같이 HTMLandCSS 폴더 생성 후, 파일명.html 혹은 파일명.css 형태로 사용 
+· HTMLandCSS 하위에 css와 js 폴더 생성, 분리하여 사용
+· html 문서에 ! 입력 후 tab: HTML 기본 구조 자동 완성
+· Layout 언어 설정: 기본 값이 en으로 설정되어 있기 때문에, 매번 사용할 때마다 변경하기 번거로우니 ko로 적용 필요
+  > 상단 → 메뉴 → 보기 → 명령 팔레트 → 기본 설정: 사용자 설정 열기(JSON), 아래와 같이 내용 추가
+
+ 
+8. 블록 요소와 인라인 요소
+· 블록 요소 (block element): 한 행을 차지, 너비 값 100%를 차지하기 때문에 요소가 수직으로 쌓임
+  → 대표적인 요소들: div, h1~h6, p, ul, lo, li, header, footer 등
+· 인라인 요소 (inline element): 필요한 만큼만 차지하며 한 줄에 여러 개 배치 가능, 수평적
+  → 대표적인 요소들: span, a, img 등
+· 인라인 블록 요소 (inline-block element): 인라인 요소와 블록 요소의 특징을 합한 것, 수평적으로 배치 가능
+
+ 
+9. HTML 태그 종류
+· <a>: 페이지 이동 태그, href는 a 태그의 속성
+· <botton>: 클릭할 수 있는 버튼을 정의
+· <div>: 문서에서 특정 영역이나 구획을 정의
+· <h1>~<h6>: 문서에서 제목을 정의, 숫자가 커질수록 글자의 크기는 작아짐
+· <img>: 경로 등 이미지에 대한 정보를 정의
+· <input>: 사용자로부터 입력을 받을 수 있는 입력 필드를 정의
+· <p>: 문단을 정의
+· <span>: 인라인 요소들을 하나로 묶을 때 사용
+· <table>: 테이블 정의
+· <ol>: 순서가 있는 리스트를 정의
+· <ul>: 순서가 없는 리스트를 정의
+· <li>: 리스트에 포함되는 아이템을 정의
+
+
+10. CSS 기본 이해
+· CSS 구문은 선택자(selsctor)와 선언부(declaration)로 구성
+  → 선택자는 디자인을 적용하고자 하는 HTML의 요소 의미, 선택자 정의가 중요!
+  → 선언부는 콜론(:)으로 구분하여 사용
+
+
+11. CSS selector 훈련
+· CSS 연습하기 좋은 CSS Diner 게임으로 아래 url에 접속하여 움직이는 항목을 찾아 하늘로 날려버리면 미션 완료!!!
+  → flukeout.github.io
+· 중간중간 헷갈리기도 하고, 올바른 선택자를 골랐는지,, 확신이 안 선다,, 좀 더 연습이 필요할 듯!! 그래도 미션 클리어V
