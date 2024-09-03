@@ -1,0 +1,262 @@
+1. JS 기본 문법_조건문
+1) if문 if~else
+    if( 조건 ){
+        참일 때 실행할 문장
+    }else{
+        거짓일 때 실행할 문장
+    }
+
+2) 다중 if문 if~else if~else 
+    if(조건1){
+        해당 조건 충족 시 실행할 문장
+    }else if(조건2){
+        해당 조건 충족 시 실행할 문장
+    }else{
+        그 외 실행할 문장
+    }
+
+3) swich case문, break는 조건에 일치하면 멈춤의 역할, defalt는 일치하는 조건이 없는 경우 실행
+    switch(검사할 값, 조건){
+     case 조건 : 
+      실행문장;
+      break;
+    case 조건 : 
+      실행문장;
+      break;
+    defalt :
+      실행문장;
+      break; 
+    }
+ ※ if문과 switch문의 차이점: 가독성 차이
+
+
+2. JS 기본 문법_반복문
+1) for문, 시간복잡도: O(n),  for(첨자=초기화; 조건; 증분;){ 실행 문장 } 형식으로 사용
+    for(let i=1; i<=10; i++){
+        console.log('i = ' + i);
+    }
+
+2) 중첩 for문, 시간복잡도: O(n²)
+    for(let i=1; i<=9; i++){
+        for(let j=1; j<=9; j++){
+            실행 문장
+
+        }     
+    }
+
+3) for ~ in문: 배열, Object, List 데이터 순회할 때 사용
+    const yujin = {
+        name : '안유진',
+        year : 2003,
+        group : 'ive'
+    }
+    for(let key in yujin){   // 여기서 key는 임시 변수, x로 작성해도 값은 동일
+        console.log(key);
+        console.log(yujin[key]);
+    }
+
+4) for ~ of문
+    const iveMemeber = ['안유진', '장원영', '가을', '이서'];
+    for(let member of iveMemeber){
+        console.log(`${member}`);
+    }
+
+5) while문: 1~10 까지 더하기
+    let i = 0;
+    let sum = 0;
+    while (i < 10) {  // 조건에 만족할 때까지 반복
+        i++;
+        sum = sum + i;
+    }
+    console.log(sum);
+
+6) do~while문: 1~10 까지 더하기
+    let i = 0;
+    let sum = 0;
+    do{
+        i++;
+        sum = sum + i;
+
+    }while (i < 10);
+    console.log(sum);
+
+7) break, contiune문: 10번 회전을 하고, 1~5까지만 더한 후 빠져나오기
+    for(let i=1; i<=10; i++){
+        if(i==6) break;
+        console.log(i);
+    }
+
+8) contiune문: 1~10까지 출력, 단 5를 제외하고 출력
+    for(let i=1; i<=10; i++){
+        if(i==5) continue;  // contiune를 만나면 그 이후 실행 문장은 실행하지 않고, for문 탈출
+        console.log(i);
+    }
+
+
+3. 타입 변환
+1) 명시적 형변환
+· 문자로 변환: toString()  /  숫자로 변환: parseInt, parseFloat
+2) 암묵적 형변환(=묵시적 형변환)
+· 기능적으로는 가능하나 명시적 코드 작성을 위해 거의 사용되지 않음, ex) let test = age + "";\
+
+
+4. 함수(function)
+1) 단일 함수의 생성
+    function oneValuePrint(don) {
+        console.log(don);
+    }
+    oneValuePrint(1000);
+
+2) 여러 개의 파라미터 사용: 두 개의 수를 전달해서 곱한 결과를 받는 함수 생성
+    function multiply(x, y) {
+        return x * y;
+    }
+    let result = multiply(10, 20);
+    console.log(result);
+
+3) default 파라미터 사용
+    function minus(x, y=3) {
+        return x - y;
+    }
+    console.log(minus(4));      >> 1 출력, y 값을 따로 선언 안 한 경우 함수에 설정한 y 값을 default로 사용
+    console.log(minus(4, 2));  >> 2 출력
+
+
+5. 연습문제
+// 문제1. number = 5, 출력: 5는 홀수 입니다.
+let number = 5;
+if(number % 2 === 0){
+    console.log(`${number}는 짝수 입니다.`);
+}else{
+    console.log(`${number}는 홀수 입니다.`);
+}
+
+--------------------------------------------
+// 문제2. score = 83, 출력: 점수는 우 입니다.
+let score = 83;
+let result = '';
+if( score >= 90){
+    result = '수';    
+}else if( score >= 80){
+    result = '우';    
+}else if( score >= 70){
+    result = '미';    
+}else if( score >= 60){
+    result = '양';    
+}else{
+    result = '가';    
+}
+console.log(`점수는 ${result} 입니다.`);
+ 
+--------------------------------------------
+// 문제3. 1~10까지 홀수만 더해서 출력
+sum = 0;
+for(let i=1; i<=10; i=i+2){
+    sum = sum + i;
+}
+console.log('sum = ' + sum);
+
+--------------------------------------------
+// 문제4. 배열을 순회하면서 모든 값 더하기
+let value = [4, 9, 2, 7, 5];
+sum = 0;
+for(let i=0; i<value.length; i++){
+    sum= sum + value[i];
+}
+console.log('sum = ' + sum);
+ 
+ --------------------------------------------
+/* 문제5. 아래와 같이 구구단 출력
+ * ====== 2단 =====
+ * 2 * 1 = 2
+ * 2 * 2 = 4
+ * .....
+ * ====== 3단 =====
+ * 3 * 1 = 3
+ * 3 * 2 = 6
+ * .....
+ */
+ 
+for(let i=2; i<=9; i++){
+    console.log(`===== ${i}단 =====`)
+    for(let j=1; j<=9; j++){
+        console.log(`${i} * ${j} = ${i*j}`);
+    }
+}
+ 
+--------------------------------------------
+/* 문제6. 아래와 같이 별 출력
+ * *
+ * **
+ * ***
+ * ****
+ * *****
+ */
+let line = 5;
+star = '';
+for(let i=1; i<=line; i++){
+    for(let j=1; j<=i; j++){
+        star = star + "*";
+    }
+    star = star + '\n';
+}
+console.log(star);
+ 
+--------------------------------------------
+/* 문제7. 아래와 같이 별 출력
+ * *****
+ * ****
+ * ***
+ * **
+ * *
+ */
+star = '';
+for(let i=1; i<=line; i++){
+    for(let j=5; j>=i; j--){
+        star = star + "*";
+    }
+    star = star + '\n';
+}
+console.log(star);
+ 
+
+6. 활용문제_로또 프로그램 작성
+// 로또 번호 담을 배열
+let lotto = new Array(6);
+lotto.fill(0);
+
+// 배열의 인텍스 지정 역할 변수
+let index = 0;
+ 
+do {
+    // 임의의 로또 번호 생성
+    let lottoNum = Math.floor((Math.random()*45)+1);
+    // 중복 유무 확인 변수를 선언(flag 기법)
+    let flag = true;
+
+    // 기존 배열에 중복번호 유무 확인
+    for(let i=0; i<=index; i++){
+        if(lotto[i] == lottoNum){
+            // 중복번호 있을 때
+            flag = false;
+        }
+    }
+ 
+    if(flag == true){
+        // flag = true : 중복 안됨
+        lotto[index] = lottoNum;
+        index++;
+    }
+    
+} while (index < lotto.length);
+ 
+console.log(lotto.sort((x, y) => x<y? -1:1));
+ 
+
+7. 활용문제_주민등록번호 유효성 체크
+① 각 자리에 2,3,4,5,6,7,8,9,2,3,4,5를 곱한다 (단, 마지막 자리는 제외)
+② 각 자리의 숫자를 모두 더한 후 11로 나눈 나머지를 구한다
+③ ②번 결과에서 11을 뺀다
+④ ③번 결과를 10으로 나눈 나머지를 구하고, 마지막 자리와 일치하는지 확인한다
+⑤ 마지막 자리와 일치하면 유효한 주민등록번호이다
+
